@@ -16,7 +16,7 @@ Citation:
 Note: dataset should be downloaded as zip and extracted into `./data` directory
 
 # Setup guide
-1. Clone repo: `git clone `
+1. Clone repo: `git clone https://github.com/TheNgith/RAVDESS.git`
 2. Install `uv` (if not yet): `curl -LsSf https://astral.sh/uv/install.sh | sh`
 3. Setup env: `uv sync`
 4. Activate env: `source .venv/bin/activate`
@@ -29,25 +29,25 @@ Note: dataset should be downloaded as zip and extracted into `./data` directory
 Plots are saved in `figs/`
 
 # Benchmarking results
-- Test accuracy: **51.03%**
-- Test loss: 1.4173
+- Test accuracy: **50.30%**
+- Test loss: 1.3491
 - Miscellaneous notes:
     - Trained on Macbook Pro M4 with GPU
-    - Per-epoch avg. runtime: 9.92 sec 
+    - Per-epoch avg. runtime: 12.73 sec 
 ```
 Classification report:
               precision    recall  f1-score   support
 
-       angry      0.636     0.525     0.575        40
-        calm      0.469     0.950     0.628        40
-     disgust      0.585     0.600     0.593        40
-     fearful      0.556     0.375     0.448        40
-       happy      0.464     0.325     0.382        40
-     neutral      0.429     0.150     0.222        20
-         sad      0.179     0.175     0.177        40
-   surprised      0.727     0.800     0.762        40
+       angry      0.592     0.725     0.652        40
+        calm      0.507     0.900     0.649        40
+     disgust      0.510     0.625     0.562        40
+     fearful      0.469     0.375     0.417        40
+       happy      0.350     0.175     0.233        40
+     neutral      0.333     0.200     0.250        20
+         sad      0.192     0.125     0.152        40
+   surprised      0.732     0.750     0.741        40
 
-    accuracy                          0.510       300
-   macro avg      0.506     0.488     0.473       300
-weighted avg      0.511     0.510     0.490       300
+    accuracy                          0.503       300
+   macro avg      0.461     0.484     0.457       300
+weighted avg      0.469     0.503     0.471       300
 ```
