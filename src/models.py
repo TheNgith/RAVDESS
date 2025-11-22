@@ -12,26 +12,35 @@ class ConvBlock(nn.Module):
             nn.ReLU(inplace=True),
             nn.MaxPool2d(kernel_size=2)
         )
-    def forward(self, x): return self.net(x)
+
+    def forward(self, x):
+        return self.net(x)
 
 
 class EmotionCNN(nn.Module):
     def __init__(self, n_classes):
         super().__init__()
+
         self.features = nn.Sequential(
-            ConvBlock(1, 32),
-            ConvBlock(32, 64),
-            ConvBlock(64, 128),
-            ConvBlock(128, 256)
+            ConvBlock(1,   64),
+            ConvBlock(64,  128),
+            ConvBlock(128, 256),
+            ConvBlock(256, 512),
+            ConvBlock(512, 512),
         )
-        self.gap = nn.AdaptiveAvgPool2d((1,1))
+
+        # Global average pooling over time & frequency
+        self.gap = nn.AdaptiveAvgPool2d((1, 1))
+
+        # Classification
         self.head = nn.Sequential(
             nn.Flatten(),
-            nn.Linear(256, 128),
+            nn.Linear(512, 256),
             nn.ReLU(inplace=True),
-            nn.Dropout(0.3),
-            nn.Linear(128, n_classes)
+            nn.Dropout(0.5),
+            nn.Linear(256, n_classes)
         )
+
     def forward(self, x):
         x = self.features(x)
         x = self.gap(x)

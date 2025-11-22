@@ -29,25 +29,25 @@ Note: dataset should be downloaded as zip and extracted into `./data` directory
 Plots are saved in `figs/`
 
 # Benchmarking results
-- Test accuracy: **50.30%**
-- Test loss: 1.3491
+- Test accuracy: **52.70%**
+- Test loss: 1.4440
 - Miscellaneous notes:
     - Trained on Macbook Pro M4 with GPU
-    - Per-epoch avg. runtime: 12.73 sec 
+    - Per-epoch avg. runtime: 25.57 sec 
 ```
 Classification report:
               precision    recall  f1-score   support
 
-       angry      0.592     0.725     0.652        40
-        calm      0.507     0.900     0.649        40
-     disgust      0.510     0.625     0.562        40
-     fearful      0.469     0.375     0.417        40
-       happy      0.350     0.175     0.233        40
-     neutral      0.333     0.200     0.250        20
-         sad      0.192     0.125     0.152        40
-   surprised      0.732     0.750     0.741        40
+       angry      0.732     0.750     0.741        40
+        calm      0.471     0.825     0.600        40
+     disgust      0.651     0.700     0.675        40
+     fearful      0.484     0.375     0.423        40
+       happy      0.303     0.250     0.274        40
+     neutral      0.000     0.000     0.000        20
+         sad      0.289     0.275     0.282        40
+   surprised      0.705     0.775     0.738        40
 
-    accuracy                          0.503       300
-   macro avg      0.461     0.484     0.457       300
-weighted avg      0.469     0.503     0.471       300
+    accuracy                          0.527       300
+   macro avg      0.454     0.494     0.467       300
+weighted avg      0.485     0.527     0.498       300
 ```
