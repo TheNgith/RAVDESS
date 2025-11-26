@@ -21,8 +21,8 @@ class RavdessMelDataset(Dataset):
             y = y / maxv
 
         # waveform augmentations (train only)
-        if self.train_mode:
-            y = augment_waveform(y, sr=TARGET_SR)
+        # if self.train_mode:
+        #     y = augment_waveform(y, sr=TARGET_SR)
 
         # pad / crop with random crop in train mode
         y = pad_or_crop(y, sr=TARGET_SR, duration=DURATION_S, train_mode=self.train_mode)
@@ -31,8 +31,8 @@ class RavdessMelDataset(Dataset):
         mel = wav_to_logmel(y, sr=TARGET_SR, n_mels=N_MELS, n_fft=FFT, hop_length=HOP)
 
         # SpecAugment on spectrogram (train only)
-        if self.train_mode:
-            mel = spec_augment(mel, p=0.7)
+        # if self.train_mode:
+        #     mel = spec_augment(mel, p=0.7)
 
         # per-sample standardization
         mean = mel.mean()

@@ -54,7 +54,13 @@ test_loader  = DataLoader(test_ds,  batch_size=BATCH_SIZE, shuffle=False)
 model = EmotionCNN(num_classes).to(device)
 print(model)
 
-criterion = nn.CrossEntropyLoss()
+# compute weights from training data
+class_counts = np.bincount(df_train["y"], minlength=num_classes)
+class_weights = 1.0 / (class_counts + 1e-6)
+class_weights = class_weights / class_weights.sum() * num_classes  # normalize-ish
+
+class_weights_tensor = torch.tensor(class_weights, dtype=torch.float32).to(device)
+criterion = nn.CrossEntropyLoss(weight=class_weights_tensor)
 optimizer = torch.optim.Adam(model.parameters(), lr=LR)
 scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=EPOCHS)
 
